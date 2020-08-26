@@ -7,6 +7,7 @@ class YoutubeDLForm(forms.Form):
     url = forms.CharField(label='Youtube URL:', max_length=256)
     group = forms.CharField(label='Group:', max_length=256)
     is_video = forms.BooleanField(label='Is Video:', required=False)
+    is_anime = forms.BooleanField(label='Is Anime:', required=False)
 
 def home(request):
     # if this is a POST request we need to process the form data
@@ -24,7 +25,10 @@ def youtube_dl(request):
             if form.is_valid():
                 command = []
                 if form.cleaned_data['is_video']:
-                    command = ['bash', '/opt/app/YoutubeScripts/youtube-video-download', form.cleaned_data['group'], form.cleaned_data['url']]
+                    if form.cleaned_data['is_anime']:
+                        command = ['bash', '/opt/app/YoutubeScripts/youtube-video-download', 'anime', form.cleaned_data['group'], form.cleaned_data['url']]
+                    else:
+                        command = ['bash', '/opt/app/YoutubeScripts/youtube-video-download', 'videos', form.cleaned_data['group'], form.cleaned_data['url']]
                 else:
                     command = ['bash', '/opt/app/YoutubeScripts/youtube-music-download', form.cleaned_data['group'], form.cleaned_data['url']]
                     

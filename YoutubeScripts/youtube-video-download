@@ -1,6 +1,7 @@
 #!/bin/sh
 if [ $# -lt 2 ]; then
-    echo "youtube-video-download <Group> <YoutubeURL>"
+    echo "youtube-video-download <Category> <Group> <YoutubeURL>"
     exit 1
 fi
-youtube-dl --yes-playlist -f "bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio" --merge-output-format mp4 -o "/mnt/plex-hdd/videos/$1/%(title)s.%(ext)s" "$2"
+
+youtube-dl --yes-playlist -f "bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio" --merge-output-format mp4 -o "/mnt/md0/shared/$1/$2/%(title)s.%(ext)s" "$3"
