@@ -1,0 +1,9 @@
+version: '3'
+services:
+  downloader:
+    build: .
+    ports:
+      - 8080:8080
+    volumes:
+      - /mnt/md0/shared/videos:/mnt/md0/shared/videos
+      - /mnt/md0/shared/music:/mnt/md0/shared/music

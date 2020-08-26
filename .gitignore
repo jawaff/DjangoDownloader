@@ -1,0 +1,5 @@
+.pip_cache
+env
+.idea
+.vscode
+__pycache__

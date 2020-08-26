@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mahoney Pi Server</title>
+  <style>
+    body {background-color: green;}
+    h1   {color: black;}
+    p    {color: black;}
+    a.button{
+      display:inline-block;
+      padding:0.35em 1.2em;
+      border:0.1em solid #FFFFFF;
+      margin:0 0.3em 0.3em 0;
+      border-radius:0.12em;
+      box-sizing: border-box;
+      text-decoration:none;
+      font-family:'Roboto',sans-serif;
+      font-weight:300;
+      color:#FFFFFF;
+      text-align:center;
+      transition: all 0.2s;
+    }
+    a.button:hover{
+      color:#000000;
+      background-color:#FFFFFF;
+    }
+    @media all and (max-width:30em){
+      a.button{
+        display:block;
+        margin:0.4em auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <img alt="Header" src="https://www.irishcentral.com/uploads/article/20853/cropped_st_patricks_day_shamrocks___getty.jpg?t=1583226320" width="512" height="256">
+  <br>
+
+  <h1>Media Server</h1>
+
+  <br>
+  
+  <a href=":8096" class="button">To Emby</a>
+  
+  <br>
+
+  <h1>Youtube Downloader</h1>
+  <form action="/youtube-download/" method="post">
+    {{ youtube_form }}
+    <!--label for="url">Youtube URL: </label>
+    <input id="url" type="text" name="url" value="">
+	
+	<label for="group">Group: </label>
+    <input id="group" type="text" name="group" value="">
+	
+    <label for="is_video"> Download as Video</label>
+    <input type="checkbox" id="is_video" name="is_video" value="Video"-->
+	
+    <input type="submit" value="Download">
+  </form>
+  <br>
+
+  <h2>Youtube Downloader Notes:</h2>
+
+  <ul>
+    <li>This downloader will download the audio or audio+video for a Youtube video. The downloaded video is automatically added to the 'Music' and 'Youtube Videos' libraries within the Plex Server. You need to scan those libraries in order to see the downloaded content.</li>
+    <li>The 'Is Video' checkbox specifies whether we're downloading music or a video.</li>
+    <li>Downloads cannot be canceled! This is just a simple download setup.</li>
+    <li>Enter a URL for a single video or a playlist. If the URL is for a playlist, then all videos in the playlist will be downloaded. The entire playlist might be downloaded if the URL is for a video in a playlist, maybe...</li>
+    <li>The group specifies the folder that the music/video will be placed in.</li>
+    <li>Some music will be placed within a 'Various Artists' section in Plex. You can edit the artist name in order to fix it.</li>
+  </ul>
+
+  <br>
+
+  <script>
+    document.addEventListener('click', function(event) {
+      var target = event.target;
+      if (target.tagName.toLowerCase() == 'a')
+      {
+          var port = target.getAttribute('href').match(/^:(\d+)(.*)/);
+          if (port)
+          {
+             target.href = window.location.origin;
+             target.port = port[1];
+          }
+      }
+    }, false);
+  </script>
+</body>
+</html>
